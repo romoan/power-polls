@@ -7,7 +7,7 @@
       <div
         v-for="(type, idx) in formTypes"
         :key="idx"
-        class="type-line d-flex justify-between w-50">
+        class="d-flex justify-between w-50 p-3">
         <div>{{ type.name }}</div>
         <input
           v-if="type.inputToConfig !== undefined"
@@ -17,7 +17,7 @@
           class="icon pl-2"
           @click="() => addField(type)">➕</div>
       </div>
-      <div class="type-line d-flex justify-between w-50">
+      <div class="d-flex justify-between w-50 p-3">
         <div>{{ radioButton.name }}</div>
         <input
           v-model="radioButton.inputToConfig"
@@ -103,9 +103,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.type-line {
-  padding: 0.7rem;
-}
 .icon {
   cursor: pointer;
 }
