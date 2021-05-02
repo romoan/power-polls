@@ -2,9 +2,9 @@
   <div class="d-flex justify-between w-50">
     <input
       v-model="internalValue"
-      :id="cleanString(element)"
+      :id="cleanElementString"
       type="checkbox"/>
-    <label :for="cleanString(element)">{{ element }}</label>
+    <label :for="cleanElementString">{{ element }}</label>
   </div>
 </template>
 
@@ -24,15 +24,14 @@ export default {
       internalValue: null
     }
   },
-  methods: {
-    // EXAMPLE_BAD
-    cleanString (string) {
-      return string.replace(/[ |&;$%@"<>()+,]/g, "")
+  computed: {
+    cleanElementString () {
+      return this.element.replace(/[ |&;$%@"<>()+,]/g, "")
     }
   },
   watch: {
-    internalValue (internalValue) {
-      this.$emit('input', internalValue)
+    internalValue () {
+      this.$emit('input', this.element)
     }
   }
 }

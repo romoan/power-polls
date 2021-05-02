@@ -1,10 +1,16 @@
 <template>
-  <div class="d-flex justify-between w-50">
-    <input
-      v-model="internalValue"
-      :id="cleanString(element)"
-      type="checkbox"/>
-    <label :for="cleanString(element)">{{ element }}</label>
+  <div>
+    <div 
+      v-for="(element, idx) in elements"
+      :key="idx"
+      class="d-flex justify-between w-50">
+      <input
+        v-model="internalValue"
+        :id="cleanString(element)"
+        :value="element"
+        type="radio"/>
+      <label :for="cleanString(element)">{{ element }}</label>
+    </div>
   </div>
 </template>
 
@@ -14,13 +20,8 @@ export default {
     value: {
       type: String
     },
-    element: {
-      type: String,
-      required: true
-    },
-    elementValue: {
-      type: String,
-      required: true
+    elements: {
+      type: Array
     }
   },
   data () {
@@ -29,7 +30,6 @@ export default {
     }
   },
   methods: {
-    // EXAMPLE_BAD
     cleanString (string) {
       return string.replace(/[ |&;$%@"<>()+,]/g, "")
     }

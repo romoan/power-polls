@@ -7,20 +7,36 @@
       <div
         v-for="(type, idx) in formTypes"
         :key="idx"
-        class="type-line d-flex justify-between w-33">
-        <div class="">{{ type.name }}</div>
+        class="type-line d-flex justify-between w-50">
+        <div>{{ type.name }}</div>
+        <input
+          v-if="type.inputToConfig !== undefined"
+          v-model="type.inputToConfig"
+          type="text"/>
         <div
           class="icon pl-2"
           @click="() => addField(type)">➕</div>
+      </div>
+      <div class="type-line d-flex justify-between w-50">
+        <div>{{ radioButton.name }}</div>
+        <input
+          v-model="radioButton.inputToConfig"
+          type="text"/>
+        <div
+          class="icon pl-2"
+          @click="addRadioButton">➕</div>
       </div>
     </div>
     <div class="separator"></div>
     <div
       v-for="(field, idx) in formFields"
       :key="idx">
-      <!-- EXAMPLE_BAD -->
+      <!-- EXAMPLE_BAD idx -->
       <component
         :is="field.component"
+        :element="field.inputToConfig"
+        :elements="field.elements"
+        :name="field.name"
         v-model="field.value"/>
     </div>
   </div>
@@ -52,13 +68,17 @@ export default {
         },
         {
           name: 'Check Box',
-          component: CheckBox
-        },
-        {
-          name: 'Radio Button',
-          component: RadioButton
+          component: CheckBox,
+          inputToConfig: ''
         },
       ],
+      radioButton: {
+        name: 'Radio Button',
+        component: RadioButton,
+        inputToConfig: '',
+        elements: [],
+        value: null
+      },
       formFields: []
     }
   },
@@ -71,7 +91,13 @@ export default {
         value: null
       }
       this.formFields.push(newComponent)
-    }
+    },
+    addRadioButton () {
+      if (this.radioButton.elements.length === 0) {
+        this.formFields.push(this.radioButton)
+      }
+      this.radioButton.elements.push(this.radioButton.inputToConfig)
+    },
   }
 }
 </script>
