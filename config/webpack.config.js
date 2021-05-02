@@ -1,6 +1,9 @@
 const path = require("path");
 const { VueLoaderPlugin } = require("vue-loader");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const resolve = exports.resolve = function () {
+  return path.join.apply(null, [__dirname, '..'].concat(Object.values(arguments)))
+}
 
 module.exports = {
   mode: "development",
@@ -25,6 +28,11 @@ module.exports = {
         use: ["vue-style-loader", "css-loader"]
       }
     ]
+  },
+  resolve: {
+    alias: {
+      'frontend': resolve('src'),
+    },
   },
   // Where to compile the bundle
   // By default the output directory is `dist`
