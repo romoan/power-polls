@@ -21,12 +21,13 @@ module.exports = {
         test: /\.js$/,
         loader: "babel-loader"
       },
-      // css-loader to bundle all the css files into one file and vue-style-loader
-      // to add all the styles inside the <style> block in `.vue` file.
+      // sass loader to compile sass code into css, css-loader to bundle
+      // all the css files into one file and vue-style-loader to add all
+      // the styles inside the <style> block in `.vue` file.
       {
-        test: /\.css$/,
-        use: ["vue-style-loader", "css-loader"]
-      }
+        test: /\.(scss|css)$/,
+        use: ["vue-style-loader", "css-loader", "sass-loader"]
+      },
     ]
   },
   resolve: {
@@ -46,8 +47,7 @@ module.exports = {
     publicPath: "/dist/"
   },
   plugins: [
-    // make sure to include the plugin for the magic
     new VueLoaderPlugin(),
-    new BundleAnalyzerPlugin()
+    // new BundleAnalyzerPlugin()
   ]
 };
