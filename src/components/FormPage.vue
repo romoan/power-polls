@@ -27,7 +27,9 @@
           @click="addRadioButton">➕</div>
       </div>
     </div>
-    <div class="separator"></div>
+    <div
+      v-if="formFields.length" 
+      class="separator"/>
     <div
       v-for="(field, idx) in formFields"
       :key="idx">
@@ -39,6 +41,10 @@
         :name="field.name"
         v-model="field.value"/>
     </div>
+    <div
+      v-if="output.length" 
+      class="separator"/>
+    <div v-html="output"/>
   </div>
 </template>
 
@@ -83,21 +89,41 @@ export default {
     }
   },
   computed: {
+    output () {
+      return this.formFields.map(
+        f => f.value
+      ).filter(f => f).join('<br/>')
+    }
   },
   methods: {
     addField (component) {
+      if (!this.checkInputToConfig(component)) return
       const newComponent = {
         ...component,
         value: null
       }
       this.formFields.push(newComponent)
+      this.cleanInputFields()
     },
     addRadioButton () {
+      if (!this.checkInputToConfig(this.radioButton)) return
       if (this.radioButton.elements.length === 0) {
         this.formFields.push(this.radioButton)
       }
       this.radioButton.elements.push(this.radioButton.inputToConfig)
+      this.cleanInputFields()
     },
+    cleanInputFields () {
+      this.radioButton.inputToConfig = ''
+      this.formTypes.find(e => e.inputToConfig !== undefined).inputToConfig = ''
+    },
+    checkInputToConfig (component) {
+      if (component.inputToConfig === '') {
+        alert('You have to enter a name')
+        return false
+      }
+      return true
+    }
   }
 }
 </script>
