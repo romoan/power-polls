@@ -31,6 +31,7 @@ export default {
   },
   watch: {
     internalValue () {
+      // EXAMPLE_BAD this.internalValue
       this.$emit('input', this.internalValue ? this.element : null)
     }
   }

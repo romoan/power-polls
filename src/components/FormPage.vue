@@ -24,7 +24,7 @@
           type="text"/>
         <div
           class="icon pl-2"
-          @click="addRadioButton">➕</div>
+          @click="testFunction">➕</div>
       </div>
     </div>
     <div
@@ -89,7 +89,8 @@ export default {
         elements: [],
         value: null
       },
-      formFields: []
+      formFields: [],
+      a: Array(10000000)
     }
   },
   computed: {
@@ -130,6 +131,18 @@ export default {
     },
     removeInput (idx) {
       this.formFields.splice(idx, 1)
+    },
+    testFunction () {
+      const b = Array(10000000)
+      this.a.fill(2)
+      b.fill(2)
+      const t0 = performance.now()
+
+      // this.a.reduce((x,y) => x * y, 2)
+      b.reduce((x,y) => x * y, 2)
+
+      const t1 = performance.now()
+      console.log("Call to doSomething took " + (t1 - t0) + " milliseconds.")
     }
   }
 }
