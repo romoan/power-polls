@@ -28,11 +28,12 @@
       </div>
     </div>
     <div
-      v-if="formFields.length" 
+      v-if="formFields.length"
       class="separator"/>
     <div
       v-for="(field, idx) in formFields"
-      :key="idx">
+      :key="idx"
+      class="d-flex justify-between w-50 p-3">
       <!-- EXAMPLE_BAD idx -->
       <component
         :is="field.component"
@@ -40,6 +41,9 @@
         :elements="field.elements"
         :name="field.name"
         v-model="field.value"/>
+        <div
+          class="icon pl-2"
+          @click="() => removeInput(idx)">✖</div>
     </div>
     <div
       v-if="output.length" 
@@ -123,6 +127,9 @@ export default {
         return false
       }
       return true
+    },
+    removeInput (idx) {
+      this.formFields.splice(idx, 1)
     }
   }
 }
