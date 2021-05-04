@@ -24,7 +24,7 @@
           type="text"/>
         <div
           class="icon pl-2"
-          @click="testFunction">➕</div>
+          @click="addRadioButton">➕</div>
       </div>
     </div>
     <div
