@@ -3,12 +3,14 @@
     <div 
       v-for="(element, idx) in elements"
       :key="idx"
-      class="d-flex justify-between w-50">
+      class="d-flex justify-between w-50"
+    >
       <input
-        v-model="internalValue"
         :id="cleanString(element)"
+        v-model="internalValue"
         :value="element"
-        type="radio"/>
+        type="radio"
+      >
       <label :for="cleanString(element)">{{ element }}</label>
     </div>
   </div>
@@ -18,26 +20,28 @@
 export default {
   props: {
     value: {
-      type: String
+      type: String,
+      default: null,
     },
     elements: {
-      type: Array
-    }
+      type: Array,
+      default: () => [],
+    },
   },
   data () {
     return {
-      internalValue: null
-    }
-  },
-  methods: {
-    cleanString (string) {
-      return string.replace(/[ |&;$%@"<>()+,]/g, "")
+      internalValue: null,
     }
   },
   watch: {
     internalValue (internalValue) {
       this.$emit('input', internalValue)
-    }
-  }
+    },
+  },
+  methods: {
+    cleanString (string) {
+      return string.replace(/[ |&;$%@"<>()+,]/g, "")
+    },
+  },
 }
 </script>

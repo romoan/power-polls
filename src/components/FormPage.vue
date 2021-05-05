@@ -7,48 +7,64 @@
       <div
         v-for="(type, idx) in formTypes"
         :key="idx"
-        class="d-flex justify-between w-50 p-3">
+        class="d-flex justify-between w-50 p-3"
+      >
         <div>{{ type.name }}</div>
         <input
           v-if="type.inputToConfig !== undefined"
           v-model="type.inputToConfig"
-          type="text"/>
+          type="text"
+        >
         <div
           class="icon pl-2"
-          @click="() => addField(type)">➕</div>
+          @click="() => addField(type)"
+        >
+          ➕
+        </div>
       </div>
       <div class="d-flex justify-between w-50 p-3">
         <div>{{ radioButton.name }}</div>
         <input
           v-model="radioButton.inputToConfig"
-          type="text"/>
+          type="text"
+        >
         <div
           class="icon pl-2"
-          @click="addRadioButton">➕</div>
+          @click="addRadioButton"
+        >
+          ➕
+        </div>
       </div>
     </div>
     <div
       v-if="formFields.length"
-      class="separator"/>
+      class="separator"
+    />
     <div
       v-for="(field, idx) in formFields"
       :key="idx"
-      class="d-flex justify-between w-50 p-3">
+      class="d-flex justify-between w-50 p-3"
+    >
       <!-- EXAMPLE_BAD idx -->
       <component
         :is="field.component"
+        v-model="field.value"
         :element="field.inputToConfig"
         :elements="field.elements"
         :name="field.name"
-        v-model="field.value"/>
-        <div
-          class="icon pl-2"
-          @click="() => removeInput(idx)">✖</div>
+      />
+      <div
+        class="icon pl-2"
+        @click="() => removeInput(idx)"
+      >
+        ✖
+      </div>
     </div>
     <div
       v-if="output.length" 
-      class="separator"/>
-    <div v-html="output"/>
+      class="separator"
+    />
+    <div v-html="output" />
   </div>
 </template>
 
@@ -63,23 +79,23 @@ export default {
     CheckBox,
     RadioButton,
     TextArea,
-    TextField
+    TextField,
   },
   data () {
     return {
       formTypes: [
         {
           name: 'Text Field',
-          component: TextField
+          component: TextField,
         },
         {
           name: 'Text Area',
-          component: TextArea
+          component: TextArea,
         },
         {
           name: 'Check Box',
           component: CheckBox,
-          inputToConfig: ''
+          inputToConfig: '',
         },
       ],
       radioButton: {
@@ -87,10 +103,10 @@ export default {
         component: RadioButton,
         inputToConfig: '',
         elements: [],
-        value: null
+        value: null,
       },
       formFields: [],
-      a: Array(10000000)
+      a: Array(10000000),
     }
   },
   computed: {
@@ -98,14 +114,14 @@ export default {
       return this.formFields.map(
         f => f.value
       ).filter(f => f).join('<br/>')
-    }
+    },
   },
   methods: {
     addField (component) {
       if (!this.checkInputToConfig(component)) return
       const newComponent = {
         ...component,
-        value: null
+        value: null,
       }
       this.formFields.push(newComponent)
       this.cleanInputFields()
@@ -143,8 +159,8 @@ export default {
 
       const t1 = performance.now()
       console.log("Call to doSomething took " + (t1 - t0) + " milliseconds.")
-    }
-  }
+    },
+  },
 }
 </script>
 

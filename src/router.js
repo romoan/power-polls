@@ -1,6 +1,6 @@
+import FormPage from 'frontend/components/FormPage.vue'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import FormPage from 'frontend/components/FormPage.vue'
 
 Vue.use(VueRouter)
 
@@ -17,5 +17,5 @@ const routes = [
 ]
 
 export const router = new VueRouter({
-  routes
+  routes,
 })

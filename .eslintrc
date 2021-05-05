@@ -81,6 +81,6 @@
       "ignoreMemberSort": false,
       "memberSyntaxSortOrder": ["none", "all", "single", "multiple"]
     }],
-    "complexity": ["error", { "max": 2 }]
+    "complexity": ["error", { "max": 16 }]
   }
 }
