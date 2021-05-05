@@ -3,18 +3,15 @@ import Vue from 'vue'
 const MOCK_URL = 'https://jsonplaceholder.typicode.com/posts/1'
 
 const stateObj = {
-  modulePermissions: [],
+  modulePermissions: null,
 }
 
 const getters = {
   getModulePermissions (state) {
     return state.modulePermissions
   },
-  getModulePermissionsByType: (state) => (type, include_children=false) => {
-    return state.modulePermissions.filter(perm => (!perm.parent || include_children) && perm.module_type === type)
-  },
-  getModulePermissionsByParent: (state) => (parent) => {
-    return state.modulePermissions.filter(perm => perm.parent === parent)
+  getModulePermissionsByField: (state) => (field='body') => {
+    return state.modulePermissions ? state.modulePermissions[field] : null
   },
 }
 

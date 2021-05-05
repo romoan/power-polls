@@ -1,4 +1,5 @@
 import FormPage from 'frontend/components/FormPage.vue'
+import Settings from 'frontend/components/Settings.vue'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
@@ -13,6 +14,11 @@ const routes = [
     path: '/home',
     name: 'form-page',
     component: FormPage,
+  },
+  {
+    path: '/settings',
+    name: 'settings-page',
+    component: Settings,
   },
 ]
 
