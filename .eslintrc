@@ -1,11 +1,9 @@
 {
   "extends": [
-    "plugin:vue/recommended",
-    "plugin:testcafe/recommended"
+    "plugin:vue/recommended"
   ],
   "plugins": [
     "sort-imports-es6-autofix",
-    "testcafe",
     "eslint-plugin-unused-imports"
   ],
   "parserOptions": {
@@ -13,21 +11,6 @@
     "sourceType": "module",
     "ecmaVersion": 8
    },
-  "globals": {
-    "localStorage": true,
-    "API_URL": true,
-    "MPS_URL": true,
-    "PACKAGES": true,
-    "$": true,
-    "jQuery": true,
-    "FormData": true,
-    "FileReader": true,
-    "Blob": true,
-    "atob": true,
-    "TextDecoder": true,
-    "USE_CACHE": true,
-    "COMMIT_HASH": true
-  },
   "rules": {
     "no-debugger": "warn",
     "no-console": "warn",

@@ -1,3 +1,4 @@
+import EventsPage from 'frontend/components/events/EventsExample.vue'
 import FormPage from 'frontend/components/FormPage.vue'
 import Settings from 'frontend/components/Settings.vue'
 import Vue from 'vue'
@@ -19,6 +20,11 @@ const routes = [
     path: '/settings',
     name: 'settings-page',
     component: Settings,
+  },
+  {
+    path: '/events',
+    name: 'events-page',
+    component: EventsPage,
   },
 ]
 
